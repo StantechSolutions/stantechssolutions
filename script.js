@@ -83,7 +83,9 @@ if (contactForm && formStatus) {
       return;
     }
 
-    const whatsappMessage = [
+    const emailAddress = 'stantechssolutions@gmail.com';
+    const emailSubject = encodeURIComponent(`Project inquiry from ${name}`);
+    const emailBody = encodeURIComponent([
       'Hello STANTECH SOLUTIONS, I would like to discuss a project.',
       '',
       `Name: ${name}`,
@@ -91,10 +93,13 @@ if (contactForm && formStatus) {
       `Service: ${service}`,
       `Budget: ${budget}`,
       `Project details: ${message}`
-    ].join('\n');
+    ].join('\n'));
 
-    formStatus.textContent = 'Opening WhatsApp with your project brief...';
-    window.open(`https://wa.me/254757680604?text=${encodeURIComponent(whatsappMessage)}`, '_blank', 'noopener');
+    const mailtoLink = `mailto:${emailAddress}?subject=${emailSubject}&body=${emailBody}`;
+
+    formStatus.textContent = 'Opening your email app with your project brief...';
+    window.location.href = mailtoLink;
+    contactForm.reset();
   });
 }
 
